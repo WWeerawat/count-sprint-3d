@@ -20,8 +20,8 @@ public class Obstacle : MonoBehaviour
     {
         if (colliderComp.gameObject.CompareTag("Player"))
         {
-            Debug.Log($"Player hit obstacle name {colliderComp.gameObject.name}");
-            colliderComp.GetComponent<TestController>().enabled = false;
+            Debug.Log($"Player hit obstacle name {name}");
+            LevelManager.Instance.ResetLevel();
         }
     }
 }
