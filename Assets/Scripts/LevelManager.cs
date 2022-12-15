@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using Player;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -34,6 +36,8 @@ public class LevelManager : MonoBehaviour
 
     GameObject spawnedPlayer;
 
+    public CinemachineVirtualCamera cinemachineVirtualCamera;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!spawnedPlayer)
             return;
+
+        spawnedPlayer.GetComponent<Army>().Move();
 
         if (currentLevel.IsFinish(spawnedPlayer))
         {
@@ -79,9 +85,15 @@ public class LevelManager : MonoBehaviour
     {
         Vector3 startPos = currentLevel.startLine.transform.position;
         spawnedPlayer = Instantiate(player, new Vector3(startPos.x, startPos.y + 0.5f, startPos.z), Quaternion.identity);
+        cinemachineVirtualCamera.Follow = spawnedPlayer.transform;
     }
     private void DestroyPlayer()
     {
         Destroy(spawnedPlayer);
+    }
+
+    public GameObject GetSpawnPlayer()
+    {
+        return spawnedPlayer;
     }
 }

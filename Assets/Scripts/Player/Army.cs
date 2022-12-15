@@ -18,18 +18,20 @@ namespace Player
         private void Start()
         {
             units = new List<GameObject>();
-            Spawn();
+            Spawn(1);
         }
 
         private void Update()
         {
-            if (units.Count <= 0) return;
+            
 
-            Move();
+            // Move();
         }
 
         public void Move()
         {
+            if (units.Count <= 0) return;
+            
             float horizontal = Input.GetAxisRaw("Horizontal");
             const float vertical = 1f;
 
@@ -41,9 +43,9 @@ namespace Player
             }
         }
 
-        public void Spawn()
+        public void Spawn(int number)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < number; i++)
             {
                 GameObject unit = Instantiate(spawnObj, transform.position, Quaternion.identity);
                 
