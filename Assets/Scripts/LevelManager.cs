@@ -5,6 +5,24 @@ using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get { return _instance; } }
+    private static LevelManager _instance;
+
+    private void Awake()
+    {
+        // if the singleton hasn't been initialized yet
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return; //Avoid doing anything else
+        }
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
     [Header("Utils")]
     public GameObject player;
 
@@ -12,6 +30,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] levels;
     GameObject currentLevelObj;
     Level currentLevel;
+    public int currentCount;
 
 
     // Start is called before the first frame update
