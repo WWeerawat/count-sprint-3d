@@ -32,27 +32,56 @@ public class LevelManager : MonoBehaviour
     Level currentLevel;
     public int currentCount;
 
+    GameObject spawnedPlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currentLevelObj = levels[0];
         currentLevel = currentLevelObj.GetComponent<Level>();
-        Vector3 startPos = currentLevel.startLine.transform.position;
-        player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
+        currentLevelObj = Instantiate(currentLevelObj, Vector3.zero, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentLevel.IsFinish(player))
+        if (!spawnedPlayer)
+            return;
+
+        if (currentLevel.IsFinish(spawnedPlayer))
         {
             Debug.Log("You finished!!");
-            player.GetComponent<TestController>().enabled = false;
+            DestroyPlayer();
+            GameManager.Instance.mainMenuUI.SetActive(true);
         }
     }
 
     public void StartLevel()
     {
+        InstantiatePlayer();
+        GameManager.Instance.mainMenuUI.SetActive(false);
+    }
+
+    public void SetToStartPosition()
+    {
+        Vector3 startPos = currentLevel.startLine.transform.position;
+        player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
+    }
+    public void ResetLevel()
+    {
+        Debug.Log("YOU DIED");
+        DestroyPlayer();
+        InstantiatePlayer();
+    }
+
+    private void InstantiatePlayer()
+    {
+        Vector3 startPos = currentLevel.startLine.transform.position;
+        spawnedPlayer = Instantiate(player, new Vector3(startPos.x, startPos.y + 0.5f, startPos.z), Quaternion.identity);
+    }
+    private void DestroyPlayer()
+    {
+        Destroy(spawnedPlayer);
     }
 }

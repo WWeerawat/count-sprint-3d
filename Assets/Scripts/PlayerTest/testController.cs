@@ -23,11 +23,11 @@ public class TestController : MonoBehaviour
         // Get input from the horizontal and vertical axes
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-
+        
         // Calculate the player's movement
         Vector3 movement = new Vector3(horizontal, 0, vertical);
         movement = movement.normalized * (speed * Time.deltaTime);
-
+        
         // Move the player
         _controller.Move(movement);
     }
