@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class Plan : MonoBehaviour
@@ -18,6 +19,7 @@ public class Plan : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         LevelManager.Instance.currentCount += spawnCount;
+        LevelManager.Instance.GetSpawnPlayer().GetComponent<Army>().Spawn(spawnCount);
         Debug.Log(LevelManager.Instance.currentCount);
     }
 }
