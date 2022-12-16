@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
 
         spawnedPlayer.GetComponent<Army>().FreeMove();
 
-        if (spawnedPlayer.GetComponent<Army>().units.Count == 0)
+        if (spawnedPlayer.GetComponent<Army>().IsAllUnitDies())
         {
             ResetLevel();
         }

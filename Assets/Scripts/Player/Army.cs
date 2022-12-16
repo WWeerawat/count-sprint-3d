@@ -26,6 +26,11 @@ namespace Player
         {
         }
 
+        public bool IsAllUnitDies()
+        {
+            return units.Count <= 0;
+        }
+
         public void Move()
         {
             if (units.Count <= 0) return;
