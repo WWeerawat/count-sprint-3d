@@ -53,8 +53,13 @@ public class LevelManager : MonoBehaviour
         if (!spawnedPlayer)
             return;
 
-        spawnedPlayer.GetComponent<Army>().Move();
+        spawnedPlayer.GetComponent<Army>().FreeMove();
 
+        if (spawnedPlayer.GetComponent<Army>().units.Count == 0)
+        {
+            ResetLevel();
+        }
+        
         if (currentLevel.IsFinish(spawnedPlayer))
         {
             Debug.Log("You finished!!");

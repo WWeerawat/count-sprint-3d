@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
@@ -16,12 +17,15 @@ public class Obstacle : MonoBehaviour
     {
     }
 
-    void OnTriggerEnter(Collider colliderComp)
+    void OnTriggerEnter(Collider other)
     {
-        if (colliderComp.gameObject.CompareTag("Player"))
-        {
-            Debug.Log($"Player hit obstacle name {name}");
-            LevelManager.Instance.ResetLevel();
-        }
+        Kill(other);
+    }
+
+    void Kill(Collider character)
+    {
+        if(!character.GetComponent<Character>()) return;
+        
+        character.GetComponent<Character>().army.KillUnit(character.gameObject);
     }
 }

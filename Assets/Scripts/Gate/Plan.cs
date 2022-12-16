@@ -18,8 +18,10 @@ public class Plan : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        LevelManager.Instance.currentCount += spawnCount;
-        LevelManager.Instance.GetSpawnPlayer().GetComponent<Army>().Spawn(spawnCount);
-        Debug.Log(LevelManager.Instance.currentCount);
+        // if(!other.GetComponent<Army>()) return;
+        //
+        // LevelManager.Instance.currentCount += spawnCount;
+        // LevelManager.Instance.GetSpawnPlayer().GetComponent<Army>().Spawn(spawnCount);
+        // Debug.Log(LevelManager.Instance.currentCount);
     }
 }
