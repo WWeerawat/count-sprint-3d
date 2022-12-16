@@ -49,7 +49,7 @@ MonoBehaviour:
   units: []
   controller: {fileID: 3591640575677985657}
   speed: 6
-  offset: 2
+  offset: 1
 --- !u!143 &3591640575677985657
 CharacterController:
   m_ObjectHideFlags: 0
