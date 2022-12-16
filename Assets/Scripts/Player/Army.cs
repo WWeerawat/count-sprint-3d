@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,18 +19,22 @@ namespace Player
         private void Start()
         {
             units = new List<GameObject>();
-            Spawn();
+            Spawn(5);
         }
 
         private void Update()
         {
-            if (units.Count <= 0) return;
+        }
 
-            Move();
+        public bool IsAllUnitDies()
+        {
+            return units.Count <= 0;
         }
 
         public void Move()
         {
+            if (units.Count <= 0) return;
+            
             float horizontal = Input.GetAxisRaw("Horizontal");
             const float vertical = 1f;
 
@@ -41,11 +46,28 @@ namespace Player
             }
         }
 
-        public void Spawn()
+        public void FreeMove()
         {
-            for (int i = 0; i < 4; i++)
+            if (units.Count <= 0) return;
+            
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+            if (direction.magnitude >= 0.1f)
+            {
+                controller.Move(direction * speed * Time.deltaTime);
+            }
+        }
+
+        public void Spawn(int number)
+        {
+            for (int i = 0; i < number; i++)
             {
                 GameObject unit = Instantiate(spawnObj, transform.position, Quaternion.identity);
+
+                unit.GetComponent<Character>().army = this;
                 
                 unit.transform.parent = transform;
                 units.Add(unit);
@@ -86,6 +108,13 @@ namespace Player
             {
                 units[i].GetComponent<Character>().Move(position[i]);
             }
+        }
+
+        public void KillUnit(GameObject unit)
+        {
+            units.Remove(unit);
+            unit.GetComponent<Character>().Die();
+            SetFormation();
         }
     }
 }

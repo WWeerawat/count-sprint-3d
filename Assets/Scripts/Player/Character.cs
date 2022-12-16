@@ -7,6 +7,8 @@ namespace Player
     {
         public float speed = 6f;
 
+        public Army army;
+
         public void Move(Vector3 direction)
         {
             // if (direction.magnitude >= 0.1f)
@@ -17,6 +19,11 @@ namespace Player
             // }
 
             transform.localPosition = new Vector3(direction.x, 0, direction.z);
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
