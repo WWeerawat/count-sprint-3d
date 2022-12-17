@@ -74,11 +74,11 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.mainMenuUI.SetActive(false);
     }
 
-    public void SetToStartPosition()
-    {
-        Vector3 startPos = currentLevel.startLine.transform.position;
-        player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
-    }
+    // public void SetToStartPosition()
+    // {
+    //     Vector3 startPos = currentLevel.startLine.transform.position;
+    //     player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
+    // }
     public void ResetLevel()
     {
         Debug.Log("YOU DIED");

@@ -5,8 +5,8 @@ namespace Gate
     [Serializable]
     public enum Operation
     {
-        Add,
-        Subtract,
+        Addition,
+        Subtraction,
         Multiple,
         Division
     }

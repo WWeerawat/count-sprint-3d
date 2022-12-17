@@ -45,11 +45,11 @@ namespace Gate
             Debug.Log("START" + count);
             switch (operation)
             {
-                case Operation.Add:
+                case Operation.Addition:
                     count += spawnCount;
                     break;
 
-                case Operation.Subtract:
+                case Operation.Subtraction:
                     count -= spawnCount;
                     break;
 
