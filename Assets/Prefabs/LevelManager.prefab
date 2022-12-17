@@ -47,5 +47,5 @@ MonoBehaviour:
   player: {fileID: 3591640575677985639, guid: 4060dab065bd1564fbec6bac764b725f, type: 3}
   levels:
   - {fileID: 7118308717458353356, guid: 989f2e817b64442139824a83793b6f2f, type: 3}
-  currentCount: 0
+  currentCount: 1
   cinemachineVirtualCamera: {fileID: 0}

@@ -13,13 +13,13 @@ namespace Player
 
         public CharacterController controller;
         public float speed = 6f;
-        
+
         public float offset = 2;
 
         private void Start()
         {
             units = new List<GameObject>();
-            Spawn(5);
+            Spawn(LevelManager.Instance.currentCount);
         }
 
         private void Update()
@@ -34,7 +34,7 @@ namespace Player
         public void Move()
         {
             if (units.Count <= 0) return;
-            
+
             float horizontal = Input.GetAxisRaw("Horizontal");
             const float vertical = 1f;
 
@@ -49,7 +49,7 @@ namespace Player
         public void FreeMove()
         {
             if (units.Count <= 0) return;
-            
+
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
@@ -57,7 +57,7 @@ namespace Player
 
             if (direction.magnitude >= 0.1f)
             {
-                controller.Move(direction * speed * Time.deltaTime);
+                controller.Move(direction * (speed * Time.deltaTime));
             }
         }
 
@@ -68,7 +68,7 @@ namespace Player
                 GameObject unit = Instantiate(spawnObj, transform.position, Quaternion.identity);
 
                 unit.GetComponent<Character>().army = this;
-                
+
                 unit.transform.parent = transform;
                 units.Add(unit);
             }
@@ -88,13 +88,13 @@ namespace Player
 
             float x = 0;
             float z = 0;
-            
-            for (int row = 0; row >= -2; row--)
+
+            for (int row = 0; row >= -6; row--)
             {
                 for (int col = -1; col <= 1; col++)
                 {
                     Vector3 pos = new Vector3(x + (col * offset), 0, z + (row * offset));
-                    
+
                     position.Add(pos);
                 }
             }
@@ -115,6 +115,16 @@ namespace Player
             units.Remove(unit);
             unit.GetComponent<Character>().Die();
             SetFormation();
+        }
+
+        public void KillUnitFromCount(int number)
+        {
+            int startIndex = units.Count - number;
+            List<GameObject> unitsToKill = units.GetRange(0, number);
+            for (int i = 0; i < unitsToKill.Count; i++)
+            {
+                KillUnit(unitsToKill[i]);
+            }
         }
     }
 }
