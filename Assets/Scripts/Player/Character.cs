@@ -1,11 +1,12 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Player
 {
     public class Character: MonoBehaviour 
     {
-        public float speed = 6f;
+        public float speed;
 
         public Army army;
 
@@ -18,7 +19,8 @@ namespace Player
             //     // transform.Translate();
             // }
 
-            transform.localPosition = new Vector3(direction.x, 0, direction.z);
+            // transform.localPosition = new Vector3(direction.x, 0, direction.z);
+            transform.DOLocalMove(new Vector3(direction.x, 0, direction.z), speed);
         }
 
         public void Die()
