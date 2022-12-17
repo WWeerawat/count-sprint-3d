@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     [Header("Levels")]
     public GameObject[] levels;
     GameObject currentLevelObj;
-    Level currentLevel;
+    Level.Level currentLevel;
     public int currentCount;
 
     GameObject spawnedPlayer;
@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         currentLevelObj = levels[0];
-        currentLevel = currentLevelObj.GetComponent<Level>();
+        currentLevel = currentLevelObj.GetComponent<Level.Level>();
         currentLevelObj = Instantiate(currentLevelObj, Vector3.zero, Quaternion.identity);
     }
 
