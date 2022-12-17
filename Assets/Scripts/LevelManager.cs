@@ -13,13 +13,11 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         // if the singleton hasn't been initialized yet
-        if (_instance != null && _instance != this)
-        {
+        if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
             return; //Avoid doing anything else
         }
-        if (_instance == null)
-        {
+        if (_instance == null) {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -55,13 +53,11 @@ public class LevelManager : MonoBehaviour
 
         spawnedPlayer.GetComponent<Army>().FreeMove();
 
-        if (spawnedPlayer.GetComponent<Army>().IsAllUnitDies())
-        {
+        if (spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
             ResetLevel();
         }
-        
-        if (currentLevel.IsFinish(spawnedPlayer))
-        {
+
+        if (currentLevel.IsFinish(spawnedPlayer)) {
             Debug.Log("You finished!!");
             DestroyPlayer();
             GameManager.Instance.mainMenuUI.SetActive(true);

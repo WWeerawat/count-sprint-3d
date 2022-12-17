@@ -8,6 +8,7 @@ namespace LevelState
     {
         private LevelBaseState currentState;
         public InitiateLevelState initiateLevelState = new InitiateLevelState();
+        public InitiatePlayerState initiatePlayerState = new InitiatePlayerState();
         public PlayLevelState playLevelState = new PlayLevelState();
         public ResultLevelState resultLevelState = new ResultLevelState();
 
@@ -42,7 +43,7 @@ namespace LevelState
 
         public void StartLevel()
         {
-            InstantiatePlayer();
+            SwitchState(initiatePlayerState);
             GameManager.Instance.mainMenuUI.SetActive(false);
         }
 
@@ -55,7 +56,7 @@ namespace LevelState
         {
             Debug.Log("YOU DIED");
             DestroyPlayer();
-            InstantiatePlayer();
+            SwitchState(initiatePlayerState);
         }
 
         private void InstantiatePlayer()

@@ -14,9 +14,6 @@ namespace LevelState
 
         public override void UpdateState(LevelStateManager levelStateManager)
         {
-            if (!levelStateManager.spawnedPlayer)
-                return;
-            levelStateManager.SwitchState(levelStateManager.playLevelState);
         }
     }
 }

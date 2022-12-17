@@ -18,8 +18,7 @@ namespace Player
 
         private void Start()
         {
-            units = new List<GameObject>();
-            Spawn(LevelManager.Instance.currentCount);
+            // units = new List<GameObject>();
         }
 
         private void Update()
@@ -40,8 +39,7 @@ namespace Player
 
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-            if (direction.magnitude >= 0.1f)
-            {
+            if (direction.magnitude >= 0.1f) {
                 controller.Move(direction * speed * Time.deltaTime);
             }
         }
@@ -55,16 +53,14 @@ namespace Player
 
             Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-            if (direction.magnitude >= 0.1f)
-            {
+            if (direction.magnitude >= 0.1f) {
                 controller.Move(direction * (speed * Time.deltaTime));
             }
         }
 
         public void Spawn(int number)
         {
-            for (int i = 0; i < number; i++)
-            {
+            for (int i = 0; i < number; i++) {
                 GameObject unit = Instantiate(spawnObj, transform.position, Quaternion.identity);
 
                 unit.GetComponent<Character>().army = this;
@@ -72,6 +68,7 @@ namespace Player
                 unit.transform.parent = transform;
                 units.Add(unit);
             }
+            Debug.Log(units.Count);
 
             SetFormation();
         }
@@ -89,10 +86,8 @@ namespace Player
             float x = 0;
             float z = 0;
 
-            for (int row = 0; row >= -6; row--)
-            {
-                for (int col = -1; col <= 1; col++)
-                {
+            for (int row = 0; row >= -6; row--) {
+                for (int col = -1; col <= 1; col++) {
                     Vector3 pos = new Vector3(x + (col * offset), 0, z + (row * offset));
 
                     position.Add(pos);
@@ -104,8 +99,7 @@ namespace Player
             //     Debug.Log(pos);
             // }
 
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = 0; i < count; i++) {
                 units[i].GetComponent<Character>().Move(position[i]);
             }
         }
@@ -121,8 +115,7 @@ namespace Player
         {
             int startIndex = units.Count - number;
             List<GameObject> unitsToKill = units.GetRange(0, number);
-            for (int i = 0; i < unitsToKill.Count; i++)
-            {
+            for (int i = 0; i < unitsToKill.Count; i++) {
                 KillUnit(unitsToKill[i]);
             }
         }
