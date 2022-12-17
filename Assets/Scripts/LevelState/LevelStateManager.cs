@@ -10,6 +10,7 @@ namespace LevelState
         public InitiateLevelState initiateLevelState = new InitiateLevelState();
         public InitiatePlayerState initiatePlayerState = new InitiatePlayerState();
         public PlayLevelState playLevelState = new PlayLevelState();
+        public BattleState battleState = new BattleState();
         public ResultLevelState resultLevelState = new ResultLevelState();
 
         [Header("Utils")]
@@ -47,11 +48,6 @@ namespace LevelState
             GameManager.Instance.mainMenuUI.SetActive(false);
         }
 
-        // public void SetToStartPosition()
-        // {
-        //     Vector3 startPos = currentLevel.startLine.transform.position;
-        //     player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
-        // }
         public void ResetLevel()
         {
             Debug.Log("YOU DIED");
@@ -74,5 +70,7 @@ namespace LevelState
         {
             return spawnedPlayer;
         }
+        
+        
     }
 }

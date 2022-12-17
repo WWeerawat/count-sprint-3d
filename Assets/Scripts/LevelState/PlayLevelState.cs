@@ -17,6 +17,10 @@ namespace LevelState
                 levelStateManager.ResetLevel();
             }
 
+            if (levelStateManager.currentLevel.IsBattle(levelStateManager.spawnedPlayer, levelStateManager.currentLevel.enemySpawnPoint)) {
+                levelStateManager.SwitchState(levelStateManager.battleState);
+            }
+
             if (levelStateManager.currentLevel.IsFinish(levelStateManager.spawnedPlayer)) {
                 levelStateManager.SwitchState(levelStateManager.resultLevelState);
             }
