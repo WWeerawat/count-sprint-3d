@@ -22,29 +22,26 @@ namespace Gate
 
         void OnTriggerEnter(Collider other)
         {
-            if (!other.GetComponent<Army>()) return;
+            Army army = other.GetComponent<Army>();
+            if (!army) return;
 
-            int spawnTo = CalculateSpawnCount();
-            LevelManager.Instance.currentCount += spawnTo;
-            Army army = LevelManager.Instance.GetSpawnPlayer().GetComponent<Army>();
-            if (spawnTo > 0)
-            {
-                army.Spawn(spawnTo);
+            int unitDiff = CalculateSpawnCount(army.units.Count);
+
+            if (unitDiff > 0) {
+                army.Spawn(unitDiff);
             }
-            else
-            {
-                army.KillUnitFromCount(Math.Abs(spawnTo));
+            else {
+                army.KillUnitFromCount(Math.Abs(unitDiff));
             }
 
-            Debug.Log($"Spawn {spawnTo}");
+            Debug.Log($"Spawn {unitDiff}");
         }
 
-        public int CalculateSpawnCount()
+        public int CalculateSpawnCount(int armyCount)
         {
-            double count = LevelManager.Instance.currentCount;
-            Debug.Log("START" + count);
-            switch (operation)
-            {
+            double count = armyCount;
+            // Debug.Log("START" + count);
+            switch (operation) {
                 case Operation.Addition:
                     count += spawnCount;
                     break;
@@ -64,8 +61,8 @@ namespace Gate
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            Debug.Log("RESULT" + count);
-            return (int)Math.Floor(count) - LevelManager.Instance.currentCount;
+            // Debug.Log("RESULT" + count);
+            return (int)Math.Floor(count) - armyCount;
         }
     }
 }
