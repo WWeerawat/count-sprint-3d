@@ -4,9 +4,10 @@ using UnityEngine;
 namespace Player.Enemy
 {
     [Serializable]
-    public class Enemy
+    public struct Enemy
     {
-        public GameObject enemySpawnPoint;
-        public int enemySpawnCount;
+        public GameObject armyPrefab;
+        public Transform spawnPoint;
+        public int unitCount;
     }
 }

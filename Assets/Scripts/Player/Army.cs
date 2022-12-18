@@ -94,8 +94,8 @@ namespace Player
             float x = 0;
             float z = 0;
 
-            for (int row = 0; row >= -6; row--) {
-                for (int col = -1; col <= 1; col++) {
+            for (int row = 0; row >= -(int)Math.Ceiling(count/5f); row--) {
+                for (int col = -2; col <= 2; col++) {
                     Vector3 pos = new Vector3(x + (col * offset), 0, z + (row * offset));
 
                     position.Add(pos);

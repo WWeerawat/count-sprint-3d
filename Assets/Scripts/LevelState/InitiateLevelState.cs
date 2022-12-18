@@ -11,7 +11,7 @@ namespace LevelState
             SetLevel(levelStateManager);
             InstantiateLevel(levelStateManager);
             
-            levelStateManager.currentLevel.SpawnEnemies(levelStateManager.player);
+            levelStateManager.currentLevel.SpawnEnemies();
         }
 
         public override void UpdateState(LevelStateManager levelStateManager)

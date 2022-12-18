@@ -14,12 +14,12 @@ namespace LevelState
         {
             levelStateManager.spawnedPlayer.GetComponent<Army>().FreeMove();
 
-            if (levelStateManager.spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
-                levelStateManager.ResetLevel();
-            }
-
             if (levelStateManager.currentLevel.IsBattle(levelStateManager.spawnedPlayer)) {
                 levelStateManager.SwitchState(levelStateManager.battleState);
+            }
+
+            if (levelStateManager.spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
+                levelStateManager.SwitchState(levelStateManager.resultLevelState);
             }
 
             if (levelStateManager.currentLevel.IsFinish(levelStateManager.spawnedPlayer)) {

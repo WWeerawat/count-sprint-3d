@@ -167,13 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208ffdf0658b54cc0b65cb83e5b80ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLine: {fileID: 8735897235228981412}
-  finishLine: {fileID: 8735897235244606140}
+  startLine: {fileID: 8735897235228981411}
+  finishLine: {fileID: 8735897235244606139}
   enemies:
-  - enemySpawnPoint: {fileID: 6416661801342762494}
-    enemySpawnCount: 2
-  - enemySpawnPoint: {fileID: 5425498723993650962}
-    enemySpawnCount: 5
+  - armyPrefab: {fileID: 3591640575677985639, guid: 4060dab065bd1564fbec6bac764b725f, type: 3}
+    spawnPoint: {fileID: 2654751206470391976}
+    unitCount: 5
+  - armyPrefab: {fileID: 3591640575677985639, guid: 4060dab065bd1564fbec6bac764b725f, type: 3}
+    spawnPoint: {fileID: 3634457446015678769}
+    unitCount: 2
 --- !u!1 &2014644296264721267
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,11 +763,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7842612926646732913, guid: b6ea8bfcbc8104d758322a69fc382e26, type: 3}
   m_PrefabInstance: {fileID: 1579262255991206098}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8735897235228981412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7842612926646732918, guid: b6ea8bfcbc8104d758322a69fc382e26, type: 3}
-  m_PrefabInstance: {fileID: 1579262255991206098}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2975786708198093188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,11 +1045,6 @@ PrefabInstance:
 --- !u!4 &8735897235244606139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2827877035843119411, guid: 180d08cd84854441398558ab910291de, type: 3}
-  m_PrefabInstance: {fileID: 6774125697125026696}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8735897235244606140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2827877035843119412, guid: 180d08cd84854441398558ab910291de, type: 3}
   m_PrefabInstance: {fileID: 6774125697125026696}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9025867735398388520
