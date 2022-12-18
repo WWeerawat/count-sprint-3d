@@ -7,11 +7,11 @@ namespace LevelState
     public class LevelStateManager : MonoBehaviour
     {
         private LevelBaseState currentState;
-        public InitiateLevelState initiateLevelState = new InitiateLevelState();
-        public InitiatePlayerState initiatePlayerState = new InitiatePlayerState();
-        public PlayLevelState playLevelState = new PlayLevelState();
-        public BattleState battleState = new BattleState();
-        public ResultLevelState resultLevelState = new ResultLevelState();
+        public readonly InitiateLevelState initiateLevelState = new InitiateLevelState();
+        public readonly InitiatePlayerState initiatePlayerState = new InitiatePlayerState();
+        public readonly PlayLevelState playLevelState = new PlayLevelState();
+        public readonly BattleState battleState = new BattleState();
+        public readonly ResultLevelState resultLevelState = new ResultLevelState();
 
         [Header("Utils")]
         public GameObject player;
@@ -44,8 +44,8 @@ namespace LevelState
 
         public void StartLevel()
         {
-            SwitchState(initiatePlayerState);
             GameManager.Instance.mainMenuUI.SetActive(false);
+            SwitchState(initiatePlayerState);
         }
 
         public void ResetLevel()
@@ -54,13 +54,7 @@ namespace LevelState
             DestroyPlayer();
             SwitchState(initiatePlayerState);
         }
-
-        private void InstantiatePlayer()
-        {
-            Vector3 startPos = currentLevel.startLine.transform.position;
-            spawnedPlayer = Instantiate(player, new Vector3(startPos.x, startPos.y + 0.5f, startPos.z), Quaternion.identity);
-            cinemachineVirtualCamera.Follow = spawnedPlayer.transform;
-        }
+        
         public void DestroyPlayer()
         {
             Destroy(spawnedPlayer);
