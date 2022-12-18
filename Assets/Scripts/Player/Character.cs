@@ -27,5 +27,15 @@ namespace Player
         {
             Destroy(gameObject);
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(!other.GetComponent<Character>()) return;
+            
+            if (other.GetComponent<Character>().army == army) return;
+            
+            army.KillUnit(gameObject);
+            other.GetComponent<Character>().army.KillUnit(other.gameObject);
+        }
     }
 }

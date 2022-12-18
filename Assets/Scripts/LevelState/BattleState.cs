@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Player;
+using Player.Enemy;
 using UnityEngine;
 
 namespace LevelState
@@ -9,13 +10,16 @@ namespace LevelState
         public override void EnterState(LevelStateManager levelStateManager)
         {
             Debug.Log("Battle!!");
-            
-            levelStateManager.GetSpawnPlayer().GetComponent<Army>().ActiveUnitMoveAnimation(false);
-            
+
+            // Army playerArmy = levelStateManager.GetSpawnPlayer().GetComponent<Army>();
+            // Army enemyArmy = levelStateManager.currentLevel.WhoBattle(levelStateManager.GetSpawnPlayer());
+            //
+            //
+            //
             // int armyCount = levelStateManager.spawnedPlayer.GetComponent<Army>().units.Count;
             // int diff = levelStateManager.currentLevel.ArmyBattle(armyCount);
             // Debug.Log($"Battle result: {diff}");
-            // levelStateManager.SwitchState(levelStateManager.playLevelState);
+            levelStateManager.SwitchState(levelStateManager.playLevelState);
         }
 
         public override void UpdateState(LevelStateManager levelStateManager)
