@@ -37,6 +37,7 @@ namespace LevelState
                 return;
             }
             
+            playerArmy.SetFormation();
             levelStateManager.SwitchState(levelStateManager.playLevelState);
         }
     }

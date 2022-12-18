@@ -31,8 +31,8 @@ namespace Player
             
             if (other.GetComponent<Character>().army == army) return;
             
-            army.KillUnit(gameObject);
-            other.GetComponent<Character>().army.KillUnit(other.gameObject);
+            army.KillUnit(gameObject, false);
+            other.GetComponent<Character>().army.KillUnit(other.gameObject, false);
         }
     }
 }

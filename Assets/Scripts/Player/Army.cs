@@ -111,11 +111,12 @@ namespace Player
             }
         }
 
-        public void KillUnit(GameObject unit)
+        public void KillUnit(GameObject unit, bool setFormation = true)
         {
             units.Remove(unit);
             unit.GetComponent<Character>().Die();
-            SetFormation();
+            if(setFormation)
+                SetFormation();
         }
 
         public void KillUnitFromCount(int number)
