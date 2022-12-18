@@ -68,7 +68,7 @@ namespace Gate
             return (int)Math.Floor(count) - armyCount;
         }
 
-        public string SetPlaneText()
+        private string SetPlaneText()
         {
             string resultText = "";
             switch (operation) {
