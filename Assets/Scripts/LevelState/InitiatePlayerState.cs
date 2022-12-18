@@ -18,8 +18,7 @@ namespace LevelState
                 return;
             levelStateManager.SwitchState(levelStateManager.playLevelState);
         }
-
-
+        
         private void InstantiatePlayer(LevelStateManager levelStateManager)
         {
             Vector3 startPos = levelStateManager.currentLevel.startLine.transform.position;

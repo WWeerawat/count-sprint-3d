@@ -12,8 +12,8 @@ namespace LevelState
         }
         public override void UpdateState(LevelStateManager levelStateManager)
         {
-            Debug.Log(levelStateManager.spawnedPlayer.GetComponent<Army>().units.Count);
             levelStateManager.spawnedPlayer.GetComponent<Army>().FreeMove();
+            
             if (levelStateManager.spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
                 levelStateManager.ResetLevel();
             }
