@@ -20,7 +20,7 @@ namespace LevelState
         private void InstantiatePlayer(LevelStateManager levelStateManager)
         {
             Vector3 startPos = levelStateManager.currentLevel.startLine.transform.position;
-            levelStateManager.spawnedPlayerArmy = Object.Instantiate(levelStateManager.playerArmyPrefab, new Vector3(startPos.x, startPos.y + 0.5f, startPos.z), Quaternion.identity);
+            levelStateManager.spawnedPlayerArmy = Object.Instantiate(levelStateManager.playerArmyPrefab, new Vector3(startPos.x, startPos.y, startPos.z), Quaternion.identity);
             levelStateManager.cinemachineVirtualCamera.Follow = levelStateManager.spawnedPlayerArmy.transform;
 
             levelStateManager.spawnedPlayerArmy.GetComponent<Army>().Spawn(levelStateManager.currentCount);

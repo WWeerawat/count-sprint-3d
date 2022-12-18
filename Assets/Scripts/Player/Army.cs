@@ -40,20 +40,6 @@ namespace Player
             }
         }
 
-        public void FreeMove()
-        {
-            if (units.Count <= 0) return;
-
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-
-            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-            if (direction.magnitude >= 0.1f) {
-                controller.Move(direction * (speed * Time.deltaTime));
-            }
-        }
-
         public void Spawn(int number)
         {
             for (int i = 0; i < number; i++) {
@@ -64,7 +50,6 @@ namespace Player
                 unit.transform.parent = transform;
                 units.Add(unit);
             }
-            Debug.Log(units.Count);
 
             SetFormation();
         }
@@ -85,7 +70,6 @@ namespace Player
                     position.Add(pos);
                 }
             }
-
 
             for (int i = 0; i < count; i++) {
                 units[i].GetComponent<Unit>().Move(position[i]);
