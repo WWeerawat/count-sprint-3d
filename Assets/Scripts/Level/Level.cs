@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 
 namespace Level
@@ -8,6 +9,9 @@ namespace Level
         public GameObject startLine;
 
         public GameObject finishLine;
+
+        public GameObject enemySpawnPoint;
+        public int enemySpawnCount;
         // Start is called before the first frame update
         void Start()
         {
@@ -21,6 +25,22 @@ namespace Level
         public bool IsFinish(GameObject player)
         {
             return Math.Abs(player.transform.position.z - finishLine.transform.position.z) < 1;
+        }
+
+        public void SpawnEnemy(GameObject armyObj)
+        {
+            GameObject enemyObj = Instantiate(armyObj, enemySpawnPoint.transform.position, Quaternion.identity);
+            enemyObj.GetComponent<Army>().Spawn(enemySpawnCount);
+        }
+
+        public bool IsBattle(GameObject player, GameObject enemy)
+        {
+            return Math.Abs(player.transform.position.z - enemy.transform.position.z) < 2;
+        }
+
+        public int ArmyBattle(int playerCount)
+        {
+            return playerCount - enemySpawnCount;
         }
     }
 }
