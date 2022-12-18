@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 namespace LevelState
@@ -7,10 +6,9 @@ namespace LevelState
     {
         public override void EnterState(LevelStateManager levelStateManager)
         {
-            Debug.Log("Init level");
             SetLevel(levelStateManager);
             InstantiateLevel(levelStateManager);
-            
+
             levelStateManager.currentLevel.SpawnEnemies();
         }
 

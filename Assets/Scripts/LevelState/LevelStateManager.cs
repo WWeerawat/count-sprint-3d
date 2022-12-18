@@ -1,4 +1,3 @@
-using System;
 using Cinemachine;
 using UnityEngine;
 
@@ -14,18 +13,16 @@ namespace LevelState
         public readonly ResultLevelState resultLevelState = new ResultLevelState();
 
         [Header("Utils")]
-        public GameObject player;
+        public GameObject playerArmyPrefab;
+        public CinemachineVirtualCamera cinemachineVirtualCamera;
 
         [Header("Levels")]
         public GameObject[] levels;
         public GameObject currentLevelObj;
         public Level.Level currentLevel;
         public int currentCount;
-
-        public GameObject spawnedPlayer;
-
-        public CinemachineVirtualCamera cinemachineVirtualCamera;
-
+        public GameObject spawnedPlayerArmy;
+        
         private void Start()
         {
             currentState = initiateLevelState;
@@ -48,23 +45,14 @@ namespace LevelState
             SwitchState(initiatePlayerState);
         }
 
-        public void ResetLevel()
-        {
-            Debug.Log("YOU DIED");
-            DestroyPlayer();
-            SwitchState(initiatePlayerState);
-        }
-        
         public void DestroyPlayer()
         {
-            Destroy(spawnedPlayer);
+            Destroy(spawnedPlayerArmy);
         }
 
         public GameObject GetSpawnPlayer()
         {
-            return spawnedPlayer;
+            return spawnedPlayerArmy;
         }
-        
-        
     }
 }

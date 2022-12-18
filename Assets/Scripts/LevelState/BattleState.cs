@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using DG.Tweening;
 using Player;
-using Player.Enemy;
 using UnityEngine;
 
 namespace LevelState
@@ -13,17 +10,15 @@ namespace LevelState
         private Army enemyArmy;
         public override void EnterState(LevelStateManager levelStateManager)
         {
-            Debug.Log("Battle!!");
-
             playerArmy = levelStateManager.GetSpawnPlayer().GetComponent<Army>();
             enemyArmy = levelStateManager.currentLevel.WhoBattle(levelStateManager.GetSpawnPlayer());
-            
-            Vector3 point = enemyArmy.transform.position + (playerArmy.transform.position - enemyArmy.transform.position) / 2;
-            
-            for (int i = 0; i < Math.Max(playerArmy.units.Count, enemyArmy.units.Count); i++)
-            {
-                enemyArmy.units[i].GetComponent<Character>().MoveWorld(point);
-                playerArmy.units[i].GetComponent<Character>().MoveWorld(point);
+
+            Vector3 position = enemyArmy.transform.position;
+            Vector3 point = position + (playerArmy.transform.position - position) / 2;
+
+            for (int i = 0; i < Math.Max(playerArmy.units.Count, enemyArmy.units.Count); i++) {
+                enemyArmy.units[i].GetComponent<Unit>().MoveWorld(point);
+                playerArmy.units[i].GetComponent<Unit>().MoveWorld(point);
             }
         }
 
@@ -31,12 +26,11 @@ namespace LevelState
         {
             if (!playerArmy.IsAllUnitDies() && !enemyArmy.IsAllUnitDies()) return;
 
-            if (playerArmy.IsAllUnitDies())
-            {
+            if (playerArmy.IsAllUnitDies()) {
                 levelStateManager.SwitchState(levelStateManager.resultLevelState);
                 return;
             }
-            
+
             playerArmy.SetFormation();
             levelStateManager.SwitchState(levelStateManager.playLevelState);
         }

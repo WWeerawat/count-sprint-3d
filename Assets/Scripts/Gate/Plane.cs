@@ -2,7 +2,6 @@ using System;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gate
 {
@@ -11,19 +10,12 @@ namespace Gate
         public Operation operation;
         public int spawnCount;
 
-
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             transform.Find("number").GetComponent<TMP_Text>().text = SetPlaneText();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             Army army = other.GetComponent<Army>();
             if (!army) return;
@@ -38,14 +30,11 @@ namespace Gate
             }
 
             transform.parent.gameObject.SetActive(false);
-
-            Debug.Log($"Spawn {unitDiff}");
         }
 
         public int CalculateSpawnCount(int armyCount)
         {
             double count = armyCount;
-            // Debug.Log("START" + count);
             switch (operation) {
                 case Operation.Addition:
                     count += spawnCount;
@@ -66,33 +55,20 @@ namespace Gate
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            // Debug.Log("RESULT" + count);
-            return (int)Math.Floor(count) - armyCount;
+            return (int) Math.Floor(count) - armyCount;
         }
 
-        public string SetPlaneText()
+        private string SetPlaneText()
         {
             string resultText = "";
-            switch (operation) {
-                case Operation.Addition:
-                    resultText += "+";
-                    break;
-
-                case Operation.Subtraction:
-                    resultText += "-";
-                    break;
-
-                case Operation.Multiple:
-                    resultText += "x";
-                    break;
-
-                case Operation.Division:
-                    resultText += "÷";
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            resultText += operation switch
+            {
+                Operation.Addition => "+",
+                Operation.Subtraction => "-",
+                Operation.Multiple => "x",
+                Operation.Division => "÷",
+                _ => throw new ArgumentOutOfRangeException()
+            };
             resultText += spawnCount;
 
             return resultText;

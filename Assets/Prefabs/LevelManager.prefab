@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e025498d57449a8910df27317b29974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3591640575677985639, guid: 4060dab065bd1564fbec6bac764b725f, type: 3}
+  playerArmyPrefab: {fileID: 3591640575677985639, guid: 4060dab065bd1564fbec6bac764b725f, type: 3}
+  cinemachineVirtualCamera: {fileID: 0}
   levels:
   - {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
   currentLevelObj: {fileID: 0}
   currentLevel: {fileID: 0}
   currentCount: 1
-  spawnedPlayer: {fileID: 0}
-  cinemachineVirtualCamera: {fileID: 0}
+  spawnedPlayerArmy: {fileID: 0}

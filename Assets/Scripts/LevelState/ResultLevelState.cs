@@ -6,7 +6,6 @@ namespace LevelState
     {
         public override void EnterState(LevelStateManager levelStateManager)
         {
-            Debug.Log("Finished!!");
             levelStateManager.DestroyPlayer();
             GameManager.Instance.mainMenuUI.SetActive(true);
 
