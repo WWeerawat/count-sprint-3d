@@ -37,7 +37,7 @@ namespace Player
             return units.Count <= 0;
         }
 
-        public void Move()
+        public void ForceMove()
         {
             if (units.Count <= 0) return;
 
