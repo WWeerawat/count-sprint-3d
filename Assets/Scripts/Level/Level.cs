@@ -30,10 +30,10 @@ namespace Level
         {
             foreach (Enemy enemy in enemies)
             {
-                GameObject enemyObj =
+                GameObject enemyArmy =
                     Instantiate(enemy.armyPrefab, enemy.spawnPoint.position, Quaternion.identity);
-                enemyObj.transform.parent = transform;
-                enemyObj.GetComponent<Army>().Spawn(enemy.unitCount);
+                enemyArmy.transform.parent = transform;
+                enemyArmy.GetComponent<Army>().Spawn(enemy.unitCount);
             }
         }
 

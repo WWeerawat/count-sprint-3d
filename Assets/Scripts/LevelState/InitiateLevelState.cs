@@ -21,12 +21,12 @@ namespace LevelState
         private void SetLevel(LevelStateManager levelStateManager)
         {
             levelStateManager.currentLevelObj = levelStateManager.levels[0];
-            levelStateManager.currentLevel = levelStateManager.currentLevelObj.GetComponent<Level.Level>();
         }
 
         private void InstantiateLevel(LevelStateManager levelStateManager)
         {
             levelStateManager.currentLevelObj = Object.Instantiate(levelStateManager.currentLevelObj, Vector3.zero, Quaternion.identity);
+            levelStateManager.currentLevel = levelStateManager.currentLevelObj.GetComponent<Level.Level>();
         }
     }
 }
