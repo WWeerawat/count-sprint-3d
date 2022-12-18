@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace LevelState
@@ -7,15 +8,25 @@ namespace LevelState
         public override void EnterState(LevelStateManager levelStateManager)
         {
             Debug.Log("Init level");
-            levelStateManager.currentLevelObj = levelStateManager.levels[0];
-            levelStateManager.currentLevel = levelStateManager.currentLevelObj.GetComponent<Level.Level>();
-            levelStateManager.currentLevelObj = Object.Instantiate(levelStateManager.currentLevelObj, Vector3.zero, Quaternion.identity);
-
+            SetLevel(levelStateManager);
+            InstantiateLevel(levelStateManager);
+            
             levelStateManager.currentLevel.SpawnEnemy(levelStateManager.player);
         }
 
         public override void UpdateState(LevelStateManager levelStateManager)
         {
+        }
+
+        private void SetLevel(LevelStateManager levelStateManager)
+        {
+            levelStateManager.currentLevelObj = levelStateManager.levels[0];
+            levelStateManager.currentLevel = levelStateManager.currentLevelObj.GetComponent<Level.Level>();
+        }
+
+        private void InstantiateLevel(LevelStateManager levelStateManager)
+        {
+            levelStateManager.currentLevelObj = Object.Instantiate(levelStateManager.currentLevelObj, Vector3.zero, Quaternion.identity);
         }
     }
 }
