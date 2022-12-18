@@ -1316,11 +1316,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072443256}
   m_CullTransparentMesh: 1
---- !u!1 &2620020181609153659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
-  m_PrefabInstance: {fileID: 4587296829469532640}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4587296829469532640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1331,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
       propertyPath: m_Name
       value: LevelComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2014644295984063900, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
       propertyPath: m_RootOrder
@@ -1510,7 +1509,7 @@ PrefabInstance:
     - target: {fileID: 6123842860171670796, guid: e0d59acd53a544698b9e1f7a426a2965, type: 3}
       propertyPath: levels.Array.data[0]
       value: 
-      objectReference: {fileID: 2620020181609153659}
+      objectReference: {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
     - target: {fileID: 6123842860171670796, guid: e0d59acd53a544698b9e1f7a426a2965, type: 3}
       propertyPath: cinemachineVirtualCamera
       value: 

@@ -1,5 +1,6 @@
 using System;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,9 +11,11 @@ namespace Gate
         public Operation operation;
         public int spawnCount;
 
+
         // Start is called before the first frame update
         void Start()
         {
+            transform.Find("number").GetComponent<TMP_Text>().text = SetPlaneText();
         }
 
         // Update is called once per frame
@@ -63,6 +66,34 @@ namespace Gate
             }
             // Debug.Log("RESULT" + count);
             return (int)Math.Floor(count) - armyCount;
+        }
+
+        public string SetPlaneText()
+        {
+            string resultText = "";
+            switch (operation) {
+                case Operation.Addition:
+                    resultText += "+";
+                    break;
+
+                case Operation.Subtraction:
+                    resultText += "-";
+                    break;
+
+                case Operation.Multiple:
+                    resultText += "x";
+                    break;
+
+                case Operation.Division:
+                    resultText += "÷";
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            resultText += spawnCount;
+
+            return resultText;
         }
     }
 }
