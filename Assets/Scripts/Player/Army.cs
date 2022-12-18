@@ -25,6 +25,14 @@ namespace Player
         {
         }
 
+        public void ActiveUnitMoveAnimation(bool active)
+        {
+            foreach (GameObject unit in units)
+            {
+                unit.GetComponent<Animator>().SetBool("isMove", active);
+            }
+        }
+
         public bool IsAllUnitDies()
         {
             return units.Count <= 0;
