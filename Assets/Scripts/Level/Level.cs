@@ -32,7 +32,7 @@ namespace Level
             {
                 GameObject enemyArmy =
                     Instantiate(enemy.armyPrefab, enemy.spawnPoint.position, Quaternion.identity);
-                enemyArmy.transform.parent = transform;
+                enemyArmy.transform.parent = enemy.spawnPoint;
                 enemyArmy.GetComponent<Army>().Spawn(enemy.unitCount);
             }
         }
