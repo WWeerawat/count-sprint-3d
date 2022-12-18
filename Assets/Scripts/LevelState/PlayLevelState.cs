@@ -8,6 +8,7 @@ namespace LevelState
         public override void EnterState(LevelStateManager levelStateManager)
         {
             Debug.Log("Play level");
+            levelStateManager.spawnedPlayer.GetComponent<Army>().ActiveUnitMoveAnimation(true);
         }
         public override void UpdateState(LevelStateManager levelStateManager)
         {
