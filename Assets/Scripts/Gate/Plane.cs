@@ -37,6 +37,8 @@ namespace Gate
                 army.KillUnitFromCount(Math.Abs(unitDiff));
             }
 
+            transform.parent.gameObject.SetActive(false);
+
             Debug.Log($"Spawn {unitDiff}");
         }
 
