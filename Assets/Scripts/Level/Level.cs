@@ -34,6 +34,11 @@ namespace Level
                     Instantiate(enemy.armyPrefab, enemy.spawnPoint.position, Quaternion.identity);
                 enemyArmy.transform.parent = enemy.spawnPoint;
                 enemyArmy.GetComponent<Army>().Spawn(enemy.unitCount);
+
+                foreach (GameObject unit in enemyArmy.GetComponent<Army>().units)
+                {
+                    unit.transform.rotation = new Quaternion(0, 180, 0, 0);
+                }
             }
         }
 
