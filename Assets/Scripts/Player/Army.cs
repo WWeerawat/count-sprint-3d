@@ -27,8 +27,7 @@ namespace Player
 
         public void ActiveUnitMoveAnimation(bool active)
         {
-            foreach (GameObject unit in units)
-            {
+            foreach (GameObject unit in units) {
                 unit.GetComponent<Animator>().SetBool("isMove", active);
             }
         }
@@ -38,7 +37,7 @@ namespace Player
             return units.Count <= 0;
         }
 
-        public void Move()
+        public void ForceMove()
         {
             if (units.Count <= 0) return;
 
@@ -94,8 +93,8 @@ namespace Player
             float x = 0;
             float z = 0;
 
-            for (int row = 0; row >= -6; row--) {
-                for (int col = -1; col <= 1; col++) {
+            for (int row = 0; row >= -(int)Math.Ceiling(count / 5f); row--) {
+                for (int col = -2; col <= 2; col++) {
                     Vector3 pos = new Vector3(x + (col * offset), 0, z + (row * offset));
 
                     position.Add(pos);
@@ -112,16 +111,21 @@ namespace Player
             }
         }
 
-        public void KillUnit(GameObject unit)
+        public void KillUnit(GameObject unit, bool setFormation = true)
         {
             units.Remove(unit);
             unit.GetComponent<Character>().Die();
-            SetFormation();
+            if(setFormation)
+                SetFormation();
         }
 
         public void KillUnitFromCount(int number)
         {
-            int startIndex = units.Count - number;
+            // int startIndex = units.Count - number;
+            if (number >= units.Count) {
+                units.Clear();
+                return;
+            }
             List<GameObject> unitsToKill = units.GetRange(0, number);
             for (int i = 0; i < unitsToKill.Count; i++) {
                 KillUnit(unitsToKill[i]);

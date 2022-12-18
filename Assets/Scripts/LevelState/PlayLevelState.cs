@@ -12,14 +12,14 @@ namespace LevelState
         }
         public override void UpdateState(LevelStateManager levelStateManager)
         {
-            levelStateManager.spawnedPlayer.GetComponent<Army>().FreeMove();
-            
-            if (levelStateManager.spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
-                levelStateManager.ResetLevel();
+            levelStateManager.spawnedPlayer.GetComponent<Army>().ForceMove();
+
+            if (levelStateManager.currentLevel.IsBattle(levelStateManager.spawnedPlayer)) {
+                levelStateManager.SwitchState(levelStateManager.battleState);
             }
 
-            if (levelStateManager.currentLevel.IsBattle(levelStateManager.spawnedPlayer, levelStateManager.currentLevel.enemySpawnPoint)) {
-                levelStateManager.SwitchState(levelStateManager.battleState);
+            if (levelStateManager.spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
+                levelStateManager.SwitchState(levelStateManager.resultLevelState);
             }
 
             if (levelStateManager.currentLevel.IsFinish(levelStateManager.spawnedPlayer)) {

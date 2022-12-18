@@ -9,7 +9,11 @@ namespace LevelState
             Debug.Log("Finished!!");
             levelStateManager.DestroyPlayer();
             GameManager.Instance.mainMenuUI.SetActive(true);
+
+            Object.Destroy(levelStateManager.currentLevelObj);
+            levelStateManager.SwitchState(levelStateManager.initiateLevelState);
         }
+
         public override void UpdateState(LevelStateManager levelStateManager)
         {
         }

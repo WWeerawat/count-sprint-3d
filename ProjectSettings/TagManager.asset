@@ -7,6 +7,7 @@ TagManager:
   - Level
   - Start
   - FInish
+  - Enemy
   layers:
   - Default
   - TransparentFX
