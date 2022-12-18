@@ -23,7 +23,7 @@ namespace Level
         public bool IsBattle(GameObject player)
         {
             return enemies.Any(enemy => Math.Abs(player.transform.position.z - enemy.enemySpawnPoint.transform.position.z) < 2);
-        } 
+        }
 
         public void SpawnEnemies(GameObject armyObj)
         {
@@ -36,6 +36,11 @@ namespace Level
         public int ArmyBattle(int playerCount)
         {
             return playerCount - enemies[0].enemySpawnCount;
+        }
+
+        public Enemy WhoBattle(GameObject player)
+        {
+            return enemies.Find(enemy => Math.Abs(player.transform.position.z - enemy.enemySpawnPoint.transform.position.z) < 2);
         }
     }
 }
