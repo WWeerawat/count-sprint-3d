@@ -1446,6 +1446,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6123842860171670796, guid: e0d59acd53a544698b9e1f7a426a2965, type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 2014644295984063899, guid: bf7e4bf3af6844b538772832f066b1dd, type: 3}
+    - target: {fileID: 6123842860171670796, guid: e0d59acd53a544698b9e1f7a426a2965, type: 3}
       propertyPath: cinemachineVirtualCamera
       value: 
       objectReference: {fileID: 1923183729}
