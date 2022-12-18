@@ -9,10 +9,13 @@ namespace LevelState
         public override void EnterState(LevelStateManager levelStateManager)
         {
             Debug.Log("Battle!!");
-            int armyCount = levelStateManager.spawnedPlayer.GetComponent<Army>().units.Count;
-            int diff = levelStateManager.currentLevel.ArmyBattle(armyCount);
-            Debug.Log($"Battle result: {diff}");
-            levelStateManager.SwitchState(levelStateManager.playLevelState);
+            
+            levelStateManager.GetSpawnPlayer().GetComponent<Army>().ActiveUnitMoveAnimation(false);
+            
+            // int armyCount = levelStateManager.spawnedPlayer.GetComponent<Army>().units.Count;
+            // int diff = levelStateManager.currentLevel.ArmyBattle(armyCount);
+            // Debug.Log($"Battle result: {diff}");
+            // levelStateManager.SwitchState(levelStateManager.playLevelState);
         }
 
         public override void UpdateState(LevelStateManager levelStateManager)
