@@ -13,13 +13,11 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         // if the singleton hasn't been initialized yet
-        if (_instance != null && _instance != this)
-        {
+        if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
             return; //Avoid doing anything else
         }
-        if (_instance == null)
-        {
+        if (_instance == null) {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -31,7 +29,7 @@ public class LevelManager : MonoBehaviour
     [Header("Levels")]
     public GameObject[] levels;
     GameObject currentLevelObj;
-    Level currentLevel;
+    Level.Level currentLevel;
     public int currentCount;
 
     GameObject spawnedPlayer;
@@ -43,7 +41,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         currentLevelObj = levels[0];
-        currentLevel = currentLevelObj.GetComponent<Level>();
+        currentLevel = currentLevelObj.GetComponent<Level.Level>();
         currentLevelObj = Instantiate(currentLevelObj, Vector3.zero, Quaternion.identity);
     }
 
@@ -53,10 +51,13 @@ public class LevelManager : MonoBehaviour
         if (!spawnedPlayer)
             return;
 
-        spawnedPlayer.GetComponent<Army>().Move();
+        spawnedPlayer.GetComponent<Army>().FreeMove();
 
-        if (currentLevel.IsFinish(spawnedPlayer))
-        {
+        if (spawnedPlayer.GetComponent<Army>().IsAllUnitDies()) {
+            ResetLevel();
+        }
+
+        if (currentLevel.IsFinish(spawnedPlayer)) {
             Debug.Log("You finished!!");
             DestroyPlayer();
             GameManager.Instance.mainMenuUI.SetActive(true);
@@ -69,11 +70,11 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.mainMenuUI.SetActive(false);
     }
 
-    public void SetToStartPosition()
-    {
-        Vector3 startPos = currentLevel.startLine.transform.position;
-        player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
-    }
+    // public void SetToStartPosition()
+    // {
+    //     Vector3 startPos = currentLevel.startLine.transform.position;
+    //     player.transform.position = new Vector3(startPos.x, startPos.y + 0.5f, startPos.z);
+    // }
     public void ResetLevel()
     {
         Debug.Log("YOU DIED");

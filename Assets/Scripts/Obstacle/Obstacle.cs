@@ -1,27 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+namespace Obstacle
 {
-    public float damageDealt = 10f;
-    // Start is called before the first frame update
-    void Start()
+    public class Obstacle : MonoBehaviour
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void OnTriggerEnter(Collider colliderComp)
-    {
-        if (colliderComp.gameObject.CompareTag("Player"))
+        public float damageDealt = 10f;
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.Log($"Player hit obstacle name {name}");
-            LevelManager.Instance.ResetLevel();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            Kill(other);
+        }
+
+        void Kill(Collider character)
+        {
+            if(!character.GetComponent<Character>()) return;
+        
+            character.GetComponent<Character>().army.KillUnit(character.gameObject);
         }
     }
 }
