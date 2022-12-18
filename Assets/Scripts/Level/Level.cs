@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Player;
+using Player.Enemy;
 using UnityEngine;
 
 namespace Level
@@ -10,28 +13,34 @@ namespace Level
 
         public GameObject finishLine;
 
-        public GameObject enemySpawnPoint;
-        public int enemySpawnCount;
+        public List<Enemy> enemies;
 
         public bool IsFinish(GameObject player)
         {
             return Math.Abs(player.transform.position.z - finishLine.transform.position.z) < 1;
         }
 
-        public bool IsBattle(GameObject player, GameObject enemy)
+        public bool IsBattle(GameObject player)
         {
-            return Math.Abs(player.transform.position.z - enemy.transform.position.z) < 2;
+            return enemies.Any(enemy => Math.Abs(player.transform.position.z - enemy.enemySpawnPoint.transform.position.z) < 2);
         }
-        
-        public void SpawnEnemy(GameObject armyObj)
+
+        public void SpawnEnemies(GameObject armyObj)
         {
-            GameObject enemyObj = Instantiate(armyObj, enemySpawnPoint.transform.position, Quaternion.identity);
-            enemyObj.GetComponent<Army>().Spawn(enemySpawnCount);
+            foreach (Enemy enemy in enemies) {
+                GameObject enemyObj = Instantiate(armyObj, enemy.enemySpawnPoint.transform.position, Quaternion.identity);
+                enemyObj.GetComponent<Army>().Spawn(enemy.enemySpawnCount);
+            }
         }
 
         public int ArmyBattle(int playerCount)
         {
-            return playerCount - enemySpawnCount;
+            return playerCount - enemies[0].enemySpawnCount;
+        }
+
+        public Enemy WhoBattle(GameObject player)
+        {
+            return enemies.Find(enemy => Math.Abs(player.transform.position.z - enemy.enemySpawnPoint.transform.position.z) < 2);
         }
     }
 }
